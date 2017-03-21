@@ -282,9 +282,14 @@ export default class SampleDetails extends React.Component {
 
         sample.addAnalysis(analysis);
 
-        ElementActions.updateSample(sample);
+        var promise = new Promise((resolve) => {
+          ElementActions.updateSample(sample);
+          resolve({});
+        });
 
-        Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + analysis.id + "&type=nmr_analysis&size=small"})
+        promise.then((_result) => {
+          Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + analysis.id + "&type=nmr_analysis&size=small"})
+        });
 
         break;
       case "Others":
@@ -293,9 +298,14 @@ export default class SampleDetails extends React.Component {
 
         sample.addAnalysis(analysis);
 
-        ElementActions.updateSample(sample);
+        var promise = new Promise((resolve) => {
+          ElementActions.updateSample(sample);
+          resolve({});
+        });
 
-        Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + analysis.id + "&type=analysis&size=small"})
+        promise.then((_result) => {
+          Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + analysis.id + "&type=analysis&size=small"})
+        });
 
         break;
       case "Others2x":
@@ -308,9 +318,14 @@ export default class SampleDetails extends React.Component {
         sample.addAnalysis(a1);
         sample.addAnalysis(a2);
 
-        ElementActions.updateSample(sample);
+        var promise = new Promise((resolve) => {
+          ElementActions.updateSample(sample);
+          resolve({});
+        });
 
-        Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + a1.id + "&analyses_ids[]=" + a2.id  + "&type=analysis&size=small"})
+        promise.then((_result) => {
+          Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + a1.id + "&analyses_ids[]=" + a2.id  + "&type=analysis&size=small"})
+        });
 
         break;
       case "Others3x":
@@ -326,9 +341,14 @@ export default class SampleDetails extends React.Component {
         sample.addAnalysis(a2);
         sample.addAnalysis(a3);
 
-        ElementActions.updateSample(sample);
+        var promise = new Promise((resolve) => {
+          ElementActions.updateSample(sample);
+          resolve({});
+        });
 
-        Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + a1.id + "&analyses_ids[]=" + a2.id + "&analyses_ids[]=" + a3.id + "&type=analysis&size=small"})
+        promise.then((_result) => {
+          Utils.downloadFile({contents: "api/v1/code_logs/print_analyses_codes?sample_id=" + sample.id + "&analyses_ids[]=" + a1.id + "&analyses_ids[]=" + a2.id + "&analyses_ids[]=" + a3.id + "&type=analysis&size=small"})
+        });
 
         break;
     }
@@ -376,7 +396,7 @@ export default class SampleDetails extends React.Component {
   }
 
   transferToDeviceButton(sample) {
-    return ( 
+    return (
       <Button bsSize="xsmall"
         onClick={() => {
           const {selectedDeviceId, devices} = ElementStore.getState().elements.devices
